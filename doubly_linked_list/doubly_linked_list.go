@@ -130,6 +130,21 @@ func (list *DoublyLinkedList) RemoveAt(index int) any {
 	return currentNode.value
 }
 
+func (list *DoublyLinkedList) Prepend(val any) {
+	newNode := Node{value: val}
+	list.Length++
+
+	if list.Head == nil {
+		list.Head = &newNode
+		return
+	}
+
+	newNode.next = list.Head
+	list.Head.prev = &newNode
+
+	list.Head = &newNode
+}
+
 func (list *DoublyLinkedList) Print(message string) {
 	print(message + ": [")
 	currentNode := list.Head

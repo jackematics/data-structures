@@ -195,3 +195,23 @@ func TestRemoveAt(t *testing.T) {
 	assert.Equal(t, 1, list.Get(1))
 	assert.Equal(t, 3, list.Get(2))
 }
+
+func TestPrependOnEmpty(t *testing.T) {
+	list := DoublyLinkedList{Length: 0}
+
+	list.Prepend(0)
+
+	assert.Equal(t, 1, list.Length)
+	assert.Equal(t, 0, list.Get(0))
+}
+
+func TestPrepend(t *testing.T) {
+	list := DoublyLinkedList{Length: 0}
+
+	list.Append(0)
+	list.Append(1)
+
+	list.Prepend(9)
+
+	assert.Equal(t, 9, list.Get(0))
+}
