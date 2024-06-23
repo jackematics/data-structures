@@ -80,6 +80,33 @@ func (list *DoublyLinkedList) InsertAt(item any, index int) error {
 	return nil
 }
 
+func (list *DoublyLinkedList) Remove(item any) any {
+	currentNode := list.Head
+
+	if list.Head.value == item {
+		list.Head = nil
+		list.Length--
+
+		return item
+	}
+
+	for currentNode != nil {
+		if currentNode.value == item {
+
+			currentNode.prev.next = currentNode.next
+			currentNode.next = currentNode.prev
+			currentNode = nil
+			list.Length--
+
+			return item
+		}
+
+		currentNode = currentNode.next
+	}
+
+	return nil
+}
+
 func (list *DoublyLinkedList) Print(message string) {
 	print(message + ": [")
 	currentNode := list.Head

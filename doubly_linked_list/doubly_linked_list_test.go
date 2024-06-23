@@ -121,3 +121,44 @@ func TestInsertAtLastElement(t *testing.T) {
 	assert.Equal(t, 1, list.Get(0))
 	assert.Equal(t, 1, list.Head.value)
 }
+
+func TestRemove(t *testing.T) {
+	list := DoublyLinkedList{Length: 0}
+
+	list.Append(0)
+	list.Append(1)
+	list.Append(2)
+
+	removed := list.Remove(1)
+
+	assert.Equal(t, 2, list.Length)
+	assert.Equal(t, 1, removed)
+	assert.Equal(t, 0, list.Get(0))
+	assert.Equal(t, 2, list.Get(1))
+}
+
+func TestRemoveFirst(t *testing.T) {
+	list := DoublyLinkedList{Length: 0}
+
+	list.Append(0)
+
+	removed := list.Remove(0)
+
+	nilNode := &Node{}
+	nilNode = nil
+
+	assert.Equal(t, 0, list.Length)
+	assert.Equal(t, 0, removed)
+	assert.Equal(t, nilNode, list.Head)
+}
+
+func TestRemoveNonExistent(t *testing.T) {
+	list := DoublyLinkedList{Length: 0}
+
+	list.Append(0)
+
+	removed := list.Remove(1)
+
+	assert.Equal(t, 1, list.Length)
+	assert.Equal(t, nil, removed)
+}
