@@ -124,8 +124,8 @@ func (list *DoublyLinkedList) RemoveAt(index int) any {
 		currentNode = currentNode.next
 	}
 
-	currentNode.prev = currentNode.next
-	currentNode.next = currentNode.prev
+	currentNode.prev.next = currentNode.next
+	currentNode.next.prev = currentNode.prev
 
 	return currentNode.value
 }

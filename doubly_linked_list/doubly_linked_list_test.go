@@ -163,7 +163,7 @@ func TestRemoveNonExistent(t *testing.T) {
 	assert.Equal(t, nil, removed)
 }
 
-func TestRemoveAt(t *testing.T) {
+func TestRemoveAtLastItem(t *testing.T) {
 	list := DoublyLinkedList{Length: 0}
 
 	list.Append(0)
@@ -176,4 +176,22 @@ func TestRemoveAt(t *testing.T) {
 	assert.Equal(t, 0, val)
 	assert.Equal(t, 0, list.Length)
 	assert.Equal(t, nilNode, list.Head)
+}
+
+func TestRemoveAt(t *testing.T) {
+	list := DoublyLinkedList{Length: 0}
+
+	list.Append(0)
+	list.Append(1)
+	list.Append(2)
+	list.Append(3)
+
+	val := list.RemoveAt(2)
+
+	assert.Equal(t, 3, list.Length)
+	assert.Equal(t, 2, val)
+
+	assert.Equal(t, 0, list.Get(0))
+	assert.Equal(t, 1, list.Get(1))
+	assert.Equal(t, 3, list.Get(2))
 }
