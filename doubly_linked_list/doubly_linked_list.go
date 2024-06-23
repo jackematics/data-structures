@@ -84,7 +84,7 @@ func (list *DoublyLinkedList) Remove(item any) any {
 	currentNode := list.Head
 
 	if list.Head.value == item {
-		list.Head = nil
+		list.Head = list.Head.next
 		list.Length--
 
 		return item
@@ -92,7 +92,6 @@ func (list *DoublyLinkedList) Remove(item any) any {
 
 	for currentNode != nil {
 		if currentNode.value == item {
-
 			currentNode.prev.next = currentNode.next
 			currentNode.next = currentNode.prev
 			currentNode = nil
@@ -105,6 +104,30 @@ func (list *DoublyLinkedList) Remove(item any) any {
 	}
 
 	return nil
+}
+
+func (list *DoublyLinkedList) RemoveAt(index int) any {
+	if index < 0 || index > list.Length-1 {
+		panic("oh dang")
+	}
+
+	list.Length--
+	if index == 0 {
+		val := list.Head.value
+		list.Head = list.Head.next
+		return val
+	}
+
+	currentNode := list.Head
+
+	for i := 0; i < index; i++ {
+		currentNode = currentNode.next
+	}
+
+	currentNode.prev = currentNode.next
+	currentNode.next = currentNode.prev
+
+	return currentNode.value
 }
 
 func (list *DoublyLinkedList) Print(message string) {
