@@ -3,3 +3,5 @@ go 1.22.0
 use ./queue
 
 use ./doubly_linked_list
+
+use ./stack
